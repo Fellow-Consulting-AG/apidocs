@@ -17,11 +17,11 @@
                 }
         },
     "host":"cloudintegration.eu",
-    "basePath":"/v2",
+    "basePath":"/",
     "tags":
         [
             {
-                "name":"API Test",
+                "name":"API",
                 "description":"Everything about your APIS",
                 "externalDocs":
                     {
@@ -29,5 +29,21 @@
                         "url":"http://swagger.io"
                     }
             }
-        ]
+        ],
+    "paths": 
+        {
+            "/export/export_rules": {
+                "post": {
+                    "responses": {
+                        "200": {
+                            "description": "Success"
+                        }
+                    },
+                    "operationId": "post_export_extraction_rule",
+                    "tags": [
+                        "Export"
+                    ]
+                }
+            }
+        }
 }
