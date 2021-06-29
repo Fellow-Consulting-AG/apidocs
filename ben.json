@@ -1,0 +1,33 @@
+{
+    "swagger":"2.0",
+    "info":
+        {
+            "description":"This is a sample server.",
+            "version":"1.0.5",
+            "title":"Ben test store",
+            "termsOfService":"http://swagger.io/terms/",
+            "contact":
+                {
+                    "email":"benedikt.liebs@fellowconsulting.de"
+                },
+            "license":
+                {
+                    "name":"Apache 2.0",
+                    "url":"http://www.apache.org/licenses/LICENSE-2.0.html"
+                }
+        },
+    "host":"cloudintegration.eu",
+    "basePath":"/v2",
+    "tags":
+        [
+            {
+                "name":"API Test",
+                "description":"Everything about your APIS",
+                "externalDocs":
+                    {
+                        "description":"Find out more",
+                        "url":"http://swagger.io"
+                    }
+            }
+        ]
+}
