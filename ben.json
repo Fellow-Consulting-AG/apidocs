@@ -16,8 +16,8 @@
                     "url":"http://www.apache.org/licenses/LICENSE-2.0.html"
                 }
         },
-    "host":"cloudintegration.eu",
-    "basePath":"/",
+    "host":"https://cloudintegration.eu",
+    "basePath":"/api/fellowkv",
     "tags":
         [
             {
