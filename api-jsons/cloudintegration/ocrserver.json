@@ -1,0 +1,147 @@
+{
+  "swagger":"2.0",
+  "info":
+      {
+          "description":"CloudIntegration - OCR Server",
+          "version":"1.6.4",
+          "title":"CloudIntegration - OCR Server",
+          "contact":
+              {
+                  "email":"benedikt.liebs@fellowconsulting.de"
+              }
+      },
+      "host":"cloudintegration.eu",
+      "basePath":"/api/ocrserver",
+      
+      "schemes":[
+          "https"
+      ],
+      "paths": {
+          "/endpoints/send_file/": {
+            "parameters": [
+              {
+                "name": "jpg_quality",
+                "in": "formData",
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 3,
+                "description": "JPEG Compression Setting",
+                "default": 1
+              },
+              {
+                "name": "optimize",
+                "in": "formData",
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 3,
+                "description": "Compression Setting",
+                "default": 1
+              },
+              {
+                "name": "pdfa",
+                "in": "formData",
+                "type": "string",
+                "required": true,
+                "description": "PDFa or PDF",
+                "default": "pdf",
+                "enum": [
+                  "pdfa",
+                  "pdf",
+                  "pdfa-1",
+                  "pdfa-2",
+                  "pdfa-3"
+                ]
+              },
+              {
+                "name": "language",
+                "in": "formData",
+                "type": "string",
+                "description": "OCR Language",
+                "default": "deu"
+              },
+              {
+                "name": "deskew",
+                "in": "formData",
+                "type": "boolean",
+                "description": "To deskew image or not",
+                "default": true
+              },
+              {
+                "name": "clean",
+                "in": "formData",
+                "type": "boolean",
+                "description": "Clean before OCR",
+                "default": true
+              },
+              {
+                "name": "final",
+                "in": "formData",
+                "type": "boolean",
+                "description": "Clean after OCR",
+                "default": true
+              },
+              {
+                "name": "background",
+                "in": "formData",
+                "type": "boolean",
+                "description": "Remove Background",
+                "default": true
+              },
+              {
+                "name": "rotate",
+                "in": "formData",
+                "type": "boolean",
+                "description": "Roatate Pages",
+                "default": true
+              },
+              {
+                "name": "force",
+                "in": "formData",
+                "type": "boolean",
+                "description": "Force Always OCR",
+                "default": false
+              },
+              {
+                "name": "blank_pages",
+                "in": "formData",
+                "type": "boolean",
+                "description": "Remove Blank Pages",
+                "default": false
+              },
+              {
+                "name": "skip-text",
+                "in": "formData",
+                "type": "boolean",
+                "description": "Skip Text pages",
+                "default": false
+              },
+              {
+                "name": "email",
+                "in": "formData",
+                "type": "string",
+                "description": "If you want to send after OCR by Email"
+              },
+              {
+                "name": "file",
+                "in": "formData",
+                "type": "file",
+                "required": true
+              }
+            ],
+            "post": {
+              "responses": {
+                "200": {
+                  "description": "Success"
+                }
+              },
+              "operationId": "post_send_file",
+              "consumes": [
+                "multipart/form-data"
+              ],
+              "tags": [
+                "Endpoints"
+              ]
+            }
+          }
+        }
+}

@@ -1,0 +1,431 @@
+{
+    "swagger": "2.0",
+    "host":"ocrserver.cloudintegration.eu",
+    "basePath": "/",
+    "tags": [
+        {
+          "name": "OcrserverProcess",
+          "description": "Process file to ocr"
+        },
+        {
+          "name": "Download with Link",
+          "description": "to download the tasks"
+        },
+        {
+          "name": "ocrserver_running_test",
+          "description": "test if api is responding"
+        },
+        {
+          "name": "Detect",
+          "description": "Detect inside Pages"
+        },
+        {
+          "name": "Merge PDF",
+          "description": "Merge your PDF"
+        },
+        {
+          "name": "Split PDF",
+          "description": "Split your PDF"
+        }
+    ],
+    "paths": {
+      "/detect/blank_pages": {
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "type": "string",
+            "description": "If you want to send after detection by Email"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          },
+          {
+            "name": "text_identify",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Check for Text in the Page",
+            "default": false
+          },
+          {
+            "name": "grafix_identify",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Check Image in the Page",
+            "default": true
+          },
+          {
+            "name": "grafix_score",
+            "in": "formData",
+            "type": "number",
+            "description": "Check Image in the Page",
+            "default": 0.95
+          }
+        ],
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "operationId": "Detect blank pages",
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "tags": [
+            "Detect"
+          ]
+        }
+      },
+      "/detect/language": {
+        "parameters": [
+          {
+            "name": "text",
+            "in": "formData",
+            "type": "string",
+            "required": true,
+            "description": "Check the language from this Text"
+          }
+        ],
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Language  found"
+            },
+            "404": {
+              "description": "Language not found"
+            }
+          },
+          "operationId": "Detect Language",
+          "consumes": [
+            "application/x-www-form-urlencoded",
+            "multipart/form-data"
+          ],
+          "tags": [
+            "Detect"
+          ]
+        }
+      },
+      "/detect/tables": {
+        "parameters": [
+          {
+            "name": "email",
+            "in": "formData",
+            "type": "string",
+            "description": "If you want to send after detection by Email"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          },
+          {
+            "name": "report",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Give back the report",
+            "default": true
+          },
+          {
+            "name": "grid",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Include Grid",
+            "default": false
+          },
+          {
+            "name": "contour",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Include Contour",
+            "default": false
+          },
+          {
+            "name": "mode",
+            "in": "formData",
+            "type": "string",
+            "description": "Use stream or lattice",
+            "default": "Auto"
+          },
+          {
+            "name": "format",
+            "in": "formData",
+            "type": "string",
+            "description": "Choose your format to download the OCR",
+            "default": "Excel",
+            "enum": [
+              "Excel",
+              "Json",
+              "HTML"
+            ]
+          }
+        ],
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "operationId": "Detect Tables",
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "tags": [
+            "Detect"
+          ]
+        }
+      },
+      "/download_link/{download_id}/{filename}": {
+        "parameters": [
+          {
+            "description": "An ID",
+            "name": "download_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "filename",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "operationId": "get_download",
+          "tags": [
+            "Download with Link"
+          ]
+        }
+      },
+      "/merge/merge_pages": {
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "type": "string",
+            "description": "If you want to send after detection by Email"
+          }
+        ],
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "operationId": "Merge PDFs",
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "tags": [
+            "Merge PDF"
+          ]
+        }
+      },
+      "/split/split_pages": {
+        "parameters": [
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "type": "string",
+            "description": "If you want to send after detection by Email"
+          }
+        ],
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "operationId": "Split PDFs",
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "tags": [
+            "Split PDF"
+          ]
+        }
+      },
+      "/test/": {
+        "get": {
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "operationId": "returns True",
+          "tags": [
+            "ocrserver_running_test"
+          ]
+        }
+      },
+      "/upload/": {
+        "parameters": [
+          {
+            "name": "jpg_quality",
+            "in": "formData",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3,
+            "description": "JPEG Compression Setting",
+            "default": 1
+          },
+          {
+            "name": "optimize",
+            "in": "formData",
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 3,
+            "description": "Compression Setting",
+            "default": 1
+          },
+          {
+            "name": "pdfa",
+            "in": "formData",
+            "type": "string",
+            "description": "PDFa or PDF",
+            "default": "pdf",
+            "enum": [
+              "pdfa",
+              "pdf",
+              "pdfa-1",
+              "pdfa-2",
+              "pdfa-3"
+            ]
+          },
+          {
+            "name": "language",
+            "in": "formData",
+            "type": "string",
+            "description": "OCR Language",
+            "default": "deu"
+          },
+          {
+            "name": "deskew",
+            "in": "formData",
+            "type": "boolean",
+            "description": "To deskew image or not",
+            "default": true
+          },
+          {
+            "name": "clean",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Clean before OCR",
+            "default": true
+          },
+          {
+            "name": "final",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Clean after OCR",
+            "default": true
+          },
+          {
+            "name": "background",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Remove Background",
+            "default": true
+          },
+          {
+            "name": "rotate",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Roatate Pages",
+            "default": true
+          },
+          {
+            "name": "force",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Force Always OCR",
+            "default": false
+          },
+          {
+            "name": "blank_pages",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Remove Blank Pages",
+            "default": false
+          },
+          {
+            "name": "skip-text",
+            "in": "formData",
+            "type": "boolean",
+            "description": "Skip Text pages",
+            "default": false
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "type": "string",
+            "description": "If you want to send after OCR by Email"
+          },
+          {
+            "name": "file",
+            "in": "formData",
+            "type": "file",
+            "required": true
+          }
+        ],
+        "post": {
+          "responses": {
+            "200": {
+              "description": "Success"
+            }
+          },
+          "operationId": "Upload a PDF to OCR",
+          "consumes": [
+            "multipart/form-data"
+          ],
+          "tags": [
+            "OcrserverProcess"
+          ]
+        }
+      }
+    },
+    "info": {
+      "title": "CloudIntegration - OCR Server",
+      "version": "1.4.9",
+      "description": "OCR Server APIs"
+    },
+    "produces": [
+      "application/json"
+    ],
+    "consumes": [
+      "application/json"
+    ],
+    "schemes":[
+        "https"
+    ],
+    "responses": {
+      "ParseError": {
+        "description": "When a mask can't be parsed"
+      },
+      "MaskError": {
+        "description": "When any error occurs on mask"
+      }
+    }
+  }
